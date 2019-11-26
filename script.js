@@ -1,5 +1,7 @@
 $.getJSON("./exams.json", function(data) {
-  const exams = data.exams;
+  const exams = data.exams
+    .map(({ date, name }) => ({ date: moment(date), name })) // transfer all dates to moment-dates
+    .sort((a, b) => a.date.diff(b.date));
 
   const lastExamTime = getLastExamTime(exams);
 
@@ -73,10 +75,10 @@ function switch_color_mode() {
 }
 
 function format_exam({ date, name }) {
-  const _date = moment(date).format("ddd DD MMM YYYY");
-  let _state = moment(date).from();
+  const _date = date.format("ddd DD MMM YYYY");
+  let _state = date.from();
   let _class = "";
-  if (moment(date).isBefore(Date.now())) {
+  if (date.isBefore(Date.now())) {
     // done with that exam
     _state = `<i class="icon checkmark"></i> ${_state}`;
     _class = "done ";
