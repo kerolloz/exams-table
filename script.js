@@ -55,12 +55,11 @@ function format_exam(date, name) {
     // done with that exam
     _state = `<i class="icon checkmark"></i> ${_state}`
     _class = "done ";
-    _class += "positive";
+    _class += "disabled";
   }
   return `<tr class="${_class}">
-  <td > ${_date}</td> 
-  <td class="center aligned">${name}</td> 
+  <td > ${_date}</td>
+  <td class="center aligned">${name}</td>
   <td class="center aligned"> ${_state}</td>
   </tr>`
 }
-
