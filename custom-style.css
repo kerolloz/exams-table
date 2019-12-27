@@ -19,8 +19,7 @@ body > .grid {
   height: 100%;
 }
 .column {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 30px;
   max-width: 800px;
 }
 #exams-table {
