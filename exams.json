@@ -1,0 +1,24 @@
+{
+  "exams": [
+    {
+      "date": "2019-05-19",
+      "name": "Practical Exams"
+    },
+    {
+      "date": "2019-12-19",
+      "name": "Graph Theory"
+    },
+    {
+      "date": "2021-12-19",
+      "name": "Problem Solving"
+    },
+    {
+      "date": "2025-02-19",
+      "name": "Dynamic Programming"
+    },
+    {
+      "date": "2025-12-19",
+      "name": "Machine Learning"
+    }
+  ]
+}
