@@ -1,44 +1,43 @@
-$.getJSON("./exams.json", function(data) {
+$.getJSON("./exams.json", function (data) {
   const exams = data.exams
     .map(({ date, name }) => ({ date: moment(date), name })) // transfer all dates to moment-dates
     .sort((a, b) => a.date.diff(b.date));
 
   const lastExamTime = getLastExamTime(exams);
 
-  if (exams_are_over(lastExamTime)) return show_exams_are_over();
+  if (areExamsOver(lastExamTime)) return showExamsAreOver();
 
   showExams(exams);
   highlightNextExam();
 
-  let countDownDate = lastExamTime;
+  const countDownDate = lastExamTime;
   function setCountDown() {
     // Get today's date and time
-    let now = new Date().getTime();
+    const now = new Date().getTime();
 
     // Find the distance between now and the count down date
-    let distance = countDownDate - now;
+    const distance = countDownDate - now;
 
     // Time calculations for days, hours, minutes and seconds
-    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    let hours = Math.floor(
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(
       (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
     );
-    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     // Display the result in the element with id="demo"
-    $("#countdown").text(
-      days + "d " + hours + "h " + minutes + "m " + seconds + "s "
-    );
+    $("#countdown").text(`${days} d ${hours} h ${minutes} m ${seconds} s`);
 
     // If the count down is finished, write some text
     if (distance < 0) {
       clearInterval(countDownInterval);
-      show_exams_are_over();
+      showExamsAreOver();
     }
   }
+  setCountDown(); // show count down, if removed you have to wait 1 sec to see the count down
   // Update the count down every 1 second
-  var countDownInterval = setInterval(setCountDown, 1000);
+  const countDownInterval = setInterval(setCountDown, 1000);
 });
 
 function getLastExamTime(exams) {
@@ -52,29 +51,29 @@ function highlightNextExam() {
 
 function showExams(exams) {
   for (const exam of exams) {
-    const exam_html = format_exam(exam);
+    const exam_html = formatExam(exam);
     $("tbody.exams").append(exam_html);
   }
 }
 
-function exams_are_over(lastExamTime) {
+function areExamsOver(lastExamTime) {
   return lastExamTime - Date.now() < 0;
 }
 
-function show_exams_are_over() {
+function showExamsAreOver() {
   $("#counter").html(
     "<p> YOU <em> SURVIVED </em> IT! <br>Enjoy your holiday! </p>"
   );
   $("#exams-table").html("");
 }
 
-function switch_color_mode() {
+function switchColorMode() {
   $("#switcher").toggleClass("black");
   $(".ui.table").toggleClass("inverted");
   $(".done").toggleClass("positive disabled");
 }
 
-function format_exam({ date, name }) {
+function formatExam({ date, name }) {
   const _date = date.format("ddd DD MMM YYYY");
   let _state = date.from();
   let _class = "";
