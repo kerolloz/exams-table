@@ -52,7 +52,7 @@ function highlightNextExam() {
 function showExams(exams) {
   for (const exam of exams) {
     const exam_html = formatExam(exam);
-    $("tbody.exams").append(exam_html);
+    $("tbody#exams").append(exam_html);
   }
 }
 
@@ -71,6 +71,8 @@ function switchColorMode() {
   $("#switcher").toggleClass("black");
   $(".ui.table").toggleClass("inverted");
   $(".done").toggleClass("positive disabled");
+  $("#switcher i").toggleClass("sun");
+  $("#switcher i").toggleClass("moon");
 }
 
 function formatExam({ date, name }) {

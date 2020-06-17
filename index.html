@@ -12,10 +12,11 @@
     <title>Exams Table</title>
   </head>
   <body>
-    <div class="ui middle aligned center aligned grid">
+    <div id="background-container"></div>
+    <div class="ui middle aligned center aligned grid" id="page-container">
       <div class="column">
         <div class="ui container">
-          <h1 class="ui center inverted aligned header" id="counter">
+          <h1 class="ui center inverted header" id="counter">
             Countdown
             <p id="countdown"></p>
           </h1>
@@ -29,15 +30,17 @@
                 <th>Date</th>
                 <th class="center aligned">Subject</th>
                 <th>
-                  <button
-                    class="ui fluid button"
+                  <div
+                    class="ui button fluid"
                     id="switcher"
                     onclick="switchColorMode()"
-                  ></button>
+                  >
+                    <i class="sun icon"></i>
+                  </div>
                 </th>
               </tr>
             </thead>
-            <tbody class="exams"></tbody>
+            <tbody id="exams"></tbody>
           </table>
         </div>
       </div>
