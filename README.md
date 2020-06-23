@@ -18,4 +18,4 @@ Or VSCode _LiveServer_, etc...
 
 You can use _Github_ pages. Just click `Use this template` button, then edit the `exams.json` file according to your exams table and you are done!
 
-You can find a live demo <https://kerolloz.me/exams-table/>
+You can find a live demo <https://kerolloz.github.io/exams-table/>
